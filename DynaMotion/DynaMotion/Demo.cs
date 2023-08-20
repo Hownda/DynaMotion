@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DynaMotion.DynaMotion;
 
 namespace DynaMotion
 {
-    internal class Program
+    class Demo : PhysicsEngine
     {
-        static void Main(string[] args)
-        {
-            Demo demo = new Demo();
-        }
+        public Demo() : base(new Vector2(615, 515), "Physics Engine Demo") { }
     }
 }

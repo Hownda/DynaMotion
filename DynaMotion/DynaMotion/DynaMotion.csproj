@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71BEAEB9-3633-4B16-BCBA-2791FA219D13}</ProjectGuid>
+    <ProjectGuid>{397BF0DD-11FA-400B-B582-8A45F2288915}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>DynaMotion</RootNamespace>
     <AssemblyName>DynaMotion</AssemblyName>
@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,9 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Demo.cs" />
+    <Compile Include="DynaMotion\PhysicsEngine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DynaMotion\Vector2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Vector2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
