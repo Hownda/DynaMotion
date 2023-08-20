@@ -8,7 +8,7 @@ using DynaMotion.DynaMotion;
 
 namespace DynaMotion
 {
-    class Demo : PhysicsEngine
+    public class Demo : PhysicsEngine
     {
         public Demo() : base(new Vector2(615, 515), "Physics Engine Demo") { }
 

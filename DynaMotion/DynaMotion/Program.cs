@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DynaMotion
 {
-    internal class Program
+    public static class Program
     {
+        public static int ObjectsInScene = 0;
+
         static void Main(string[] args)
         {
             Demo demo = new Demo();

@@ -25,6 +25,8 @@ namespace DynaMotion.DynaMotion
 
         public Color BackgroundColor = Color.Green;
 
+        private static List<Object> ObjectsInScene = new List<Object>();
+
         public PhysicsEngine(Vector2 ScreenSize, string Title)
         {
             this.ScreenSize = ScreenSize;
@@ -39,6 +41,11 @@ namespace DynaMotion.DynaMotion
             PhysicsLoopThread.Start();
 
             Application.Run(Window);
+        }
+
+        public static void AddObject(Object newObject)
+        {
+            ObjectsInScene.Add(newObject);
         }
 
         void PhysicsLoop()
