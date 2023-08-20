@@ -1,0 +1,8 @@
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\bin\Debug\DynaMotion.exe.config
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\bin\Debug\DynaMotion.exe
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\bin\Debug\DynaMotion.pdb
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.csproj.AssemblyReference.cache
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.csproj.SuggestedBindingRedirects.cache
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.csproj.CoreCompileInputs.cache
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.exe
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.pdb

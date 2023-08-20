@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace DynaMotion
 {
-    internal class Program
+    internal class Main
     {
-        static void Main(string[] args)
-        {
-        }
+        
     }
 }
