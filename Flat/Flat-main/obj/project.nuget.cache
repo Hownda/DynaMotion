@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "OEFRRK63xvAABz8mDbobiFXGdCwZkpkFsHrcaRPNYxbD0XcuqZ7lXk+rnlazGIm4KBBNJYyLoorjCsQaKa6gag==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\hound\\Documents\\GitHub\\DynaMotion\\Flat\\Flat-main\\Flat.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\hound\\.nuget\\packages\\monogame.framework.desktopgl\\3.8.0.1641\\monogame.framework.desktopgl.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\hound\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.21\\microsoft.netcore.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\hound\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.21\\microsoft.windowsdesktop.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\hound\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.21\\microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512"
+  ],
+  "logs": []
+}
