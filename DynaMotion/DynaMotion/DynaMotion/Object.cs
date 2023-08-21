@@ -24,7 +24,7 @@ namespace DynaMotion.DynaMotion
         /// <param name="position">Objects position in scene.</param>
         /// <param name="rotation">Objects rotation in scene.</param>
         /// <param name="scale">Objects scale in scene.</param>
-        public Object(Vector2 position = null, Vector2 rotation = null, Vector2 scale = null)
+        public Object(Vector2 position, Vector2 rotation, Vector2 scale)
         {
             // Create a unique id
             Id = Program.ObjectsInScene;
@@ -41,40 +41,19 @@ namespace DynaMotion.DynaMotion
             // TODO Render object in scene
         }
 
-        public void SetPosition(Vector2 position = null)
+        public void SetPosition(Vector2 position)
         {
-            if (position == null)
-            {
-                Position = Vector2.Zero();
-            }
-            else
-            {
-                Position = position;
-            }
+            Position = position;
         }
 
-        public void SetRotation(Vector2 rotation = null)
+        public void SetRotation(Vector2 rotation)
         {
-            if (rotation == null)
-            {
-                Position = Vector2.Zero();
-            }
-            else
-            {
-                Position = rotation;
-            }
+            Rotation = rotation;
         }
 
-        public void SetScale(Vector2 scale = null)
+        public void SetScale(Vector2 scale)
         {
-            if (scale == null)
-            {
-                Position = Vector2.Zero();
-            }
-            else
-            {
-                Position = scale;
-            }
+            Scale = scale;
         }
 
         public void SetActive(bool visible)
