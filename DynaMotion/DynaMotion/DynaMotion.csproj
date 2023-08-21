@@ -58,5 +58,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DynaMotion\PhysicsEngine.resx">
+      <DependentUpon>PhysicsEngine.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,6 +18,8 @@ namespace DynaMotion.DynaMotion
         public Vector2 Rotation { get; private set; }
         public Vector2 Scale { get; private set; }
 
+        public Vector2 velocity { get; private set; }
+
         /// <summary>
         /// Constructs a new object in the scene.
         /// </summary>
