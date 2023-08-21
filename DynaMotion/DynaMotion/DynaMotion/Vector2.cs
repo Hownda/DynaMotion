@@ -6,26 +6,32 @@ using System.Threading.Tasks;
 
 namespace DynaMotion.DynaMotion
 {
-    public class Vector2
+    public readonly struct Vector2
     {
-        public float X { get; set; }
-        public float Y { get; set; }
+        public readonly float x;
+        public readonly float y;
 
-        public Vector2()
+        public static readonly Vector2 zero = new Vector2(0f, 0f);
+
+        public Vector2(float x, float y)
         {
-            X = Zero().X;
-            Y = Zero().Y;
+            this.x = x;
+            this.y = y;
         }
 
-        public Vector2(float X, float Y)
+        public static Vector2 operator +(Vector2 v1, Vector2 v2)
         {
-            this.X = X;
-            this.Y = Y;
+            return new Vector2(v1.x + v2.x, v1.y + v2.y);
         }
 
-        public static Vector2 Zero()
+        public static Vector2 operator -(Vector2 v1, Vector2 v2)
         {
-            return new Vector2(0,0);
+            return new Vector2(v1.x - v2.x, v1.y - v2.y);
+        }
+
+        public static Vector2 operator *(Vector2 v1, float f)
+        {
+            return new Vector2(v1.x * f, v1.y * f);
         }
     }
 }
