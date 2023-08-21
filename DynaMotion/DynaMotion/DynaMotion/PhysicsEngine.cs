@@ -33,7 +33,7 @@ namespace DynaMotion.DynaMotion
             this.Title = Title;
 
             Window = new Canvas();
-            Window.Size = new Size((int)this.ScreenSize.X, (int)this.ScreenSize.Y);
+            Window.Size = new Size((int)this.ScreenSize.x, (int)this.ScreenSize.y);
             Window.Text = this.Title;
             Window.Paint += Renderer;
 
