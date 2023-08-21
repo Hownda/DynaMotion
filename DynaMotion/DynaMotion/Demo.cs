@@ -11,6 +11,12 @@ namespace DynaMotion
 {
     public class Demo : PhysicsEngine
     {
+        // Camera Movement
+        bool left;
+        bool right;
+        bool up;
+        bool down;
+
         public Demo() : base(new Vector2(615, 515), "Physics Engine Demo") { }
 
         public override void OnLoad()
@@ -28,17 +34,38 @@ namespace DynaMotion
         int time = 0;
         public override void OnUpdate()
         {
-            
+            if (up)
+            {
+                CameraPosition += new Vector2(0, 1);
+            }
+            if (down)
+            {
+                CameraPosition -= new Vector2(0, 1);
+            }
+            if (left)
+            {
+                CameraPosition += new Vector2(1, 0);
+            }
+            if (right)
+            {
+                CameraPosition -= new Vector2(1, 0);
+            }
         }
 
         public override void GetKeyDown(KeyEventArgs e)
         {
-            Debug.LogWarning("Input System not implemented");
+            if (e.KeyCode == Keys.W) { up = true; }
+            if (e.KeyCode == Keys.S) { down = true; }
+            if (e.KeyCode == Keys.A) { left = true; }
+            if (e.KeyCode == Keys.D) { right = true; }
         }
 
         public override void GetKeyUp(KeyEventArgs e)
         {
-            Debug.LogWarning("Input System not implemented");
+            if (e.KeyCode == Keys.W) { up = false; }
+            if (e.KeyCode == Keys.S) { down = false; }
+            if (e.KeyCode == Keys.A) { left = false; }
+            if (e.KeyCode == Keys.D) { right = false; }
         }
     }
 }

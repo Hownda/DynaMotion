@@ -29,6 +29,10 @@ namespace DynaMotion.DynaMotion
         /// <param name="scale">Objects scale in scene.</param>
         public Rigidbody(Vector2 position, Vector2 rotation, Vector2 scale)
         {
+            this.Position = position;
+            this.Rotation = rotation;
+            this.Scale = scale;
+
             // Create a unique id
             Id = Program.ObjectsInScene;
             Program.ObjectsInScene++;
@@ -36,33 +40,11 @@ namespace DynaMotion.DynaMotion
             // Add object to a list in PhysicsEngine
             Debug.Log($"[Rigidbody] - Has been instantiated");
             PhysicsEngine.AddRigidbody(this);
-
-            // Set transform values
-            SetPosition(position);
-            SetRotation(rotation);
-            SetScale(scale);
-
-            // TODO Render object in scene
         }
 
-        public void SetPosition(Vector2 position)
+        public void Move(Vector2 amount)
         {
-            Position = position;
-        }
-
-        public void SetRotation(Vector2 rotation)
-        {
-            Rotation = rotation;
-        }
-
-        public void SetScale(Vector2 scale)
-        {
-            Scale = scale;
-        }
-
-        public void SetActive(bool visible)
-        {
-            IsActive = visible;
+            this.Position += amount;
         }
     }
 }

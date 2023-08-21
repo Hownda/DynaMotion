@@ -94,7 +94,7 @@ namespace DynaMotion.DynaMotion
             // Render objects
             foreach (Rigidbody rb in RigidbodiesInScene)
             {
-                g.FillRectangle(new SolidBrush(Color.Blue), rb.Position.x, rb.Position.y, rb.Scale.x, rb.Scale.y);
+                g.FillEllipse(new SolidBrush(Color.Blue), rb.Position.x, rb.Position.y, rb.Scale.x, rb.Scale.y);
             }
             
         }
