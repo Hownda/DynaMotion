@@ -14,3 +14,5 @@ C:\Users\leSyn\OneDrive\Dokumente\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\De
 C:\Users\leSyn\OneDrive\Dokumente\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.csproj.CoreCompileInputs.cache
 C:\Users\leSyn\OneDrive\Dokumente\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.exe
 C:\Users\leSyn\OneDrive\Dokumente\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.pdb
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.DynaMotion.Canvas.resources
+C:\Users\hound\Documents\GitHub\DynaMotion\DynaMotion\DynaMotion\obj\Debug\DynaMotion.csproj.GenerateResource.cache

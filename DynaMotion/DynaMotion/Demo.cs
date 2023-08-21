@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using DynaMotion.DynaMotion;
 
 namespace DynaMotion
@@ -14,20 +15,30 @@ namespace DynaMotion
 
         public override void OnLoad()
         {
-            Console.WriteLine("Hello World");
             BackgroundColor = Color.Black;
+
+            Rigidbody rigidbody = new Rigidbody(new Vector2(10, 10), new Vector2(0, 0), new Vector2(20, 20));
         }
 
         public override void OnDraw()
         {
             
-        }        
+        }
 
-        int frame = 0;
+        int time = 0;
         public override void OnUpdate()
         {
-            Console.WriteLine($"Frame Count: {frame}");
-            frame++;
+            
+        }
+
+        public override void GetKeyDown(KeyEventArgs e)
+        {
+            Debug.LogWarning("Input System not implemented");
+        }
+
+        public override void GetKeyUp(KeyEventArgs e)
+        {
+            Debug.LogWarning("Input System not implemented");
         }
     }
 }

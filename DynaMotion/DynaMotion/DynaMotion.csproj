@@ -47,7 +47,7 @@
   <ItemGroup>
     <Compile Include="Demo.cs" />
     <Compile Include="DynaMotion\Debug.cs" />
-    <Compile Include="DynaMotion\Object.cs" />
+    <Compile Include="DynaMotion\Rigidbody.cs" />
     <Compile Include="DynaMotion\PhysicsEngine.cs">
       <SubType>Form</SubType>
     </Compile>

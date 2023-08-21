@@ -25,10 +25,14 @@ namespace DynaMotion.DynaMotion
 
         public Color BackgroundColor = Color.Green;
 
-        private static List<Object> ObjectsInScene = new List<Object>();
+        private static List<Rigidbody> RigidbodiesInScene = new List<Rigidbody>();
+
+        public Vector2 CameraPosition = Vector2.zero;
+        public float CameraRotation = 0;
 
         public PhysicsEngine(Vector2 ScreenSize, string Title)
         {
+            Debug.Log("Physics Engine starting...");
             this.ScreenSize = ScreenSize;
             this.Title = Title;
 
@@ -36,16 +40,27 @@ namespace DynaMotion.DynaMotion
             Window.Size = new Size((int)this.ScreenSize.x, (int)this.ScreenSize.y);
             Window.Text = this.Title;
             Window.Paint += Renderer;
-
+            Window.KeyDown += WindowKeyDown;
+            Window.KeyUp += WindowKeyUp;
             PhysicsLoopThread = new Thread(PhysicsLoop);
             PhysicsLoopThread.Start();
 
             Application.Run(Window);
         }
 
-        public static void AddObject(Object newObject)
+        private void WindowKeyDown(object sender, KeyEventArgs e)
         {
-            ObjectsInScene.Add(newObject);
+            GetKeyDown(e);
+        }
+
+        private void WindowKeyUp(object sender, KeyEventArgs e) 
+        {
+            GetKeyUp(e);
+        }
+
+        public static void AddRigidbody(Rigidbody newObject)
+        {
+            RigidbodiesInScene.Add(newObject);
         }
 
         void PhysicsLoop()
@@ -62,7 +77,7 @@ namespace DynaMotion.DynaMotion
                 }
                 catch
                 {
-                    Console.WriteLine("Eninge is loading...");
+                    Debug.LogError("Window has not been found!");
                 }
             }
         }
@@ -71,10 +86,23 @@ namespace DynaMotion.DynaMotion
         {
             Graphics g = e.Graphics;
             g.Clear(BackgroundColor);
+
+            // Camera transform
+            g.TranslateTransform(CameraPosition.x, CameraPosition.y);
+            g.RotateTransform(CameraRotation);
+
+            // Render objects
+            foreach (Rigidbody rb in RigidbodiesInScene)
+            {
+                g.FillRectangle(new SolidBrush(Color.Blue), rb.Position.x, rb.Position.y, rb.Scale.x, rb.Scale.y);
+            }
+            
         }
 
         public abstract void OnLoad();
         public abstract void OnUpdate();
         public abstract void OnDraw();
+        public abstract void GetKeyDown(KeyEventArgs e);
+        public abstract void GetKeyUp(KeyEventArgs e);
     }
 }

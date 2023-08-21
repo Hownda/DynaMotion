@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DynaMotion.DynaMotion
 {
-    public class Object
+    public sealed class Rigidbody
     {
         // Unique object id
         public int Id { get; private set; }
@@ -19,6 +19,7 @@ namespace DynaMotion.DynaMotion
         public Vector2 Scale { get; private set; }
 
         public Vector2 velocity { get; private set; }
+        public float angularVelocity { get; private set; }
 
         /// <summary>
         /// Constructs a new object in the scene.
@@ -26,14 +27,15 @@ namespace DynaMotion.DynaMotion
         /// <param name="position">Objects position in scene.</param>
         /// <param name="rotation">Objects rotation in scene.</param>
         /// <param name="scale">Objects scale in scene.</param>
-        public Object(Vector2 position, Vector2 rotation, Vector2 scale)
+        public Rigidbody(Vector2 position, Vector2 rotation, Vector2 scale)
         {
             // Create a unique id
             Id = Program.ObjectsInScene;
             Program.ObjectsInScene++;
 
             // Add object to a list in PhysicsEngine
-            PhysicsEngine.AddObject(this);
+            Debug.Log($"[Rigidbody] - Has been instantiated");
+            PhysicsEngine.AddRigidbody(this);
 
             // Set transform values
             SetPosition(position);
