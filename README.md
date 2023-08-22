@@ -9,5 +9,4 @@ Pack Entertainment's own terminated physics engine under development.
 4) Download any project from the store
    
 ## Software:
-Unity Version: 2021.3.12f1,
 Microsoft Visual Studio Version: 2022 17.1.32407
