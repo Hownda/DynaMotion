@@ -64,7 +64,7 @@ namespace DynaMotion.DynaMotion
 
             // Add object to a list in PhysicsEngine
             Debug.Log($"[Rigidbody] - Has been instantiated");
-            PhysicsEngine.AddRigidbody(this);
+            PhysicsWorld.AddRigidbody(this);
         }
 
         private static Vector2[] CreateVertices(float width, float height)

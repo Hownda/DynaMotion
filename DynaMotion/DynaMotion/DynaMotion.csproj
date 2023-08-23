@@ -48,6 +48,7 @@
     <Compile Include="Demo.cs" />
     <Compile Include="DynaMotion\Collisions.cs" />
     <Compile Include="DynaMotion\Debug.cs" />
+    <Compile Include="DynaMotion\PhysicsWorld.cs" />
     <Compile Include="DynaMotion\Rigidbody.cs" />
     <Compile Include="DynaMotion\PhysicsEngine.cs">
       <SubType>Form</SubType>

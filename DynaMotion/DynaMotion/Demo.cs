@@ -46,7 +46,8 @@ namespace DynaMotion
         {       
             if (up)
             {
-                CameraPosition += new Vector2(0, 1);
+                //CameraPosition += new Vector2(0, 1);
+                ground.Move(new Vector2(0, -1));
             }
             if (down)
             {

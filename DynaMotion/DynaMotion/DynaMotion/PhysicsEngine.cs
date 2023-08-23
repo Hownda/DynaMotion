@@ -23,10 +23,9 @@ namespace DynaMotion.DynaMotion
         private string Title = "Physics Engine";
         private Canvas Window = null;
         private Thread PhysicsLoopThread = null;
+        
 
         public Color BackgroundColor = Color.Green;
-
-        private static List<Rigidbody> RigidbodiesInScene = new List<Rigidbody>();
 
         public Vector2 CameraPosition = Vector2.zero;
         public float CameraRotation = 0;
@@ -66,11 +65,6 @@ namespace DynaMotion.DynaMotion
             GetKeyUp(e);
         }
 
-        public static void AddRigidbody(Rigidbody newObject)
-        {
-            RigidbodiesInScene.Add(newObject);
-        }
-
         void PhysicsLoop()
         {
             OnLoad();
@@ -80,7 +74,6 @@ namespace DynaMotion.DynaMotion
                 {
                     OnDraw();
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
-                    DetectCollisions();
                     OnUpdate();
                     Thread.Sleep(1);
                 }
@@ -93,6 +86,8 @@ namespace DynaMotion.DynaMotion
 
         private void Renderer(object sender, PaintEventArgs e)
         {
+            PhysicsWorld.Step();
+
             Graphics g = e.Graphics;
             g.Clear(BackgroundColor);
 
@@ -101,7 +96,7 @@ namespace DynaMotion.DynaMotion
             g.RotateTransform(CameraRotation);
 
             // Render objects
-            foreach (Rigidbody rb in RigidbodiesInScene)
+            foreach (Rigidbody rb in PhysicsWorld.RigidbodiesInScene)
             {
                 if (rb.shapeType == ShapeType.Circle)
                 {
@@ -113,25 +108,7 @@ namespace DynaMotion.DynaMotion
                 }
             }
             
-        }
-
-        private void DetectCollisions()
-        {
-            for (int i = 0; i < RigidbodiesInScene.Count - 1 ; i++)
-            {
-                Rigidbody rb1 = RigidbodiesInScene[i];
-                for (int j = i + 1; j < RigidbodiesInScene.Count; j++)
-                {
-                    Rigidbody rb2 = RigidbodiesInScene[j];
-
-                    if (Collisions.PolygonCollision(rb1.GetTransformedVertices(), rb2.GetTransformedVertices(), out Vector2 normal, out float depth))                     
-                    {
-                        rb1.Move(-normal * depth / 2);
-                        rb2.Move(normal * depth / 2);
-                    }
-                }
-            }
-        }
+        }       
 
         public abstract void OnLoad();
         public abstract void OnUpdate();
