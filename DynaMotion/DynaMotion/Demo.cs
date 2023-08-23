@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,9 @@ namespace DynaMotion
 {
     public class Demo : PhysicsEngine
     {
+        private int rigidbodyCount = 10;
+        private Rigidbody ground = null;
+
         // Camera Movement
         bool left;
         bool right;
@@ -23,7 +27,14 @@ namespace DynaMotion
         {
             BackgroundColor = Color.Black;
 
-            Rigidbody rigidbody = new Rigidbody(new Vector2(10, 10), new Vector2(0, 0), new Vector2(20, 20));
+            ground = new Rigidbody(new Vector2(0, 300), 0, new Vector2(1000, 20), ShapeType.Rect);
+
+            Random rnd = new Random();
+            for (int i = 0; i < rigidbodyCount; i++)
+            {            
+                Vector2 randomPosition = new Vector2(rnd.Next(10, 512), rnd.Next(10, 512));
+                Rigidbody rigidbody = new Rigidbody(randomPosition, 0, new Vector2(20, 20), ShapeType.Rect);
+            }    
         }
 
         public override void OnDraw()
@@ -31,9 +42,8 @@ namespace DynaMotion
             
         }
 
-        int time = 0;
         public override void OnUpdate()
-        {
+        {       
             if (up)
             {
                 CameraPosition += new Vector2(0, 1);
