@@ -66,10 +66,6 @@ namespace DynaMotion.DynaMotion
                 depth = axisDepth;
                 normal = axis;
             }
-
-            depth /= Vector2.Magnitude(normal);
-            normal = Vector2.Normalize(normal);
-
             
             Vector2 polygonCenter = FindArithmeticMean(vertices);
 
@@ -153,6 +149,7 @@ namespace DynaMotion.DynaMotion
 
                 Vector2 edge = v2 - v1;
                 Vector2 axis = new Vector2(-edge.y, edge.x);
+                axis = Vector2.Normalize(axis);
 
                 ProjectVertices(vertices1, axis, out float min1, out float max1);
                 ProjectVertices(vertices2, axis, out float min2, out float max2);
@@ -178,6 +175,7 @@ namespace DynaMotion.DynaMotion
 
                 Vector2 edge = v2 - v1;
                 Vector2 axis = new Vector2(-edge.y, edge.x);
+                axis = Vector2.Normalize(axis);
 
                 ProjectVertices(vertices1, axis, out float min1, out float max1);
                 ProjectVertices(vertices2, axis, out float min2, out float max2);
@@ -195,8 +193,6 @@ namespace DynaMotion.DynaMotion
                     normal = axis;
                 }
             }
-            depth /= Vector2.Magnitude(normal);
-            normal = Vector2.Normalize(normal);
 
             Vector2 center1 = FindArithmeticMean(vertices1);
             Vector2 center2 = FindArithmeticMean(vertices2);

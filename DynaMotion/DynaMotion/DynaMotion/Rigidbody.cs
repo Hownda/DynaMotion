@@ -18,8 +18,11 @@ namespace DynaMotion.DynaMotion
         public float Rotation { get; private set; }
         public Vector2 Scale { get; private set; }
 
-        public Vector2 velocity { get; private set; }
+        public Vector2 velocity { get; set; }
         public float angularVelocity { get; private set; }
+
+        public float mass = 1;
+        public float restitution = 0.5f;
 
         public Vector2 force { get; private set; }
 
@@ -114,12 +117,15 @@ namespace DynaMotion.DynaMotion
 
         public void Step(float deltaTime)
         {
-            this.velocity += force * deltaTime;
+            Vector2 acceleration = this.force / this.mass;
+            this.velocity += acceleration * deltaTime;
             this.Position += this.velocity * deltaTime;
             this.Rotation += this.angularVelocity * deltaTime;
 
             // Reset force value after application
             this.force = Vector2.zero;
+
+            this.transformUpdateRequired = true;
         }
 
         public void Move(Vector2 amount)

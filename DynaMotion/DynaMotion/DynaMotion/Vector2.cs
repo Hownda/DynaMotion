@@ -41,6 +41,11 @@ namespace DynaMotion.DynaMotion
             return new Vector2(v1.x * f, v1.y * f);
         }
 
+        public static Vector2 operator *(float f, Vector2 v1)
+        {
+            return new Vector2(v1.x * f, v1.y * f);
+        }
+
         public static Vector2 operator /(Vector2 v1, float f)
         {
             return new Vector2(v1.x / f, v1.y / f);

@@ -27,13 +27,13 @@ namespace DynaMotion
         {
             BackgroundColor = Color.Black;
 
-            ground = new Rigidbody(new Vector2(0, 300), 0, new Vector2(1000, 20), ShapeType.Rect);
+            ground = new Rigidbody(new Vector2(100, 300), 0, new Vector2(1000, 20), ShapeType.Rect);
 
             ShapeType[] shapeTypes = {ShapeType.Circle, ShapeType.Rect};
             Random rnd = new Random();
             for (int i = 0; i < rigidbodyCount; i++)
             {            
-                Vector2 randomPosition = new Vector2(rnd.Next(10, 512), rnd.Next(10, 512));
+                Vector2 randomPosition = new Vector2(rnd.Next(10, 512), rnd.Next(10, 200));
                 Rigidbody rigidbody = new Rigidbody(randomPosition, 0, new Vector2(20, 20), shapeTypes[rnd.Next(0, 2)]);
             }    
         }
@@ -44,11 +44,10 @@ namespace DynaMotion
         }
 
         public override void OnUpdate()
-        {       
+        {
             if (up)
-            {
-                //CameraPosition += new Vector2(0, 1);
-                ground.Move(new Vector2(0, -1));
+            {       
+                ground.AddForce(new Vector2(0, -50));
             }
             if (down)
             {

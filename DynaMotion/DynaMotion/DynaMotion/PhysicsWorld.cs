@@ -80,6 +80,8 @@ namespace DynaMotion.DynaMotion
                         // Moves both rigidbodies by half the intersection depth
                         rb1.Move(-normal * depth / 2);
                         rb2.Move(normal * depth / 2);
+
+                        ResolveCollision(rb1, rb2, normal, depth);
                     }
                 }
             }            
@@ -122,7 +124,15 @@ namespace DynaMotion.DynaMotion
 
         private static void ResolveCollision(Rigidbody rb1, Rigidbody rb2, Vector2 normal, float depth)
         {
-            //rb1.velocity += j / rb1.mass * normal
+            Vector2 relativeVelocity = rb2.velocity - rb1.velocity;
+
+            float e = Math.Min(rb1.restitution, rb2.restitution);
+
+            float j = -(1 + e) * Vector2.DotProduct(relativeVelocity, normal);
+            j /= (1f / rb1.mass) + (1 / rb2.mass);
+
+            rb1.velocity -= j / rb1.mass * normal;
+            rb2.velocity += j / rb2.mass * normal;
         }
     }
 }
