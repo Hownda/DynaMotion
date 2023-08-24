@@ -21,6 +21,8 @@ namespace DynaMotion.DynaMotion
         public Vector2 velocity { get; private set; }
         public float angularVelocity { get; private set; }
 
+        public Vector2 force { get; private set; }
+
         public ShapeType shapeType { get; private set; }
 
         private readonly Vector2[] vertices;
@@ -110,6 +112,16 @@ namespace DynaMotion.DynaMotion
             return this.transformedVertices;
         }
 
+        public void Step(float deltaTime)
+        {
+            this.velocity += force * deltaTime;
+            this.Position += this.velocity * deltaTime;
+            this.Rotation += this.angularVelocity * deltaTime;
+
+            // Reset force value after application
+            this.force = Vector2.zero;
+        }
+
         public void Move(Vector2 amount)
         {
             this.Position += amount;
@@ -120,6 +132,11 @@ namespace DynaMotion.DynaMotion
         {
             this.Rotation += amount;
             this.transformUpdateRequired = true;
+        }
+
+        public void AddForce(Vector2 amount)
+        {
+            this.force = amount;
         }
     }
 }

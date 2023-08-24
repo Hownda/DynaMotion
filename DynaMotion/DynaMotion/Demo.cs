@@ -29,11 +29,12 @@ namespace DynaMotion
 
             ground = new Rigidbody(new Vector2(0, 300), 0, new Vector2(1000, 20), ShapeType.Rect);
 
+            ShapeType[] shapeTypes = {ShapeType.Circle, ShapeType.Rect};
             Random rnd = new Random();
             for (int i = 0; i < rigidbodyCount; i++)
             {            
                 Vector2 randomPosition = new Vector2(rnd.Next(10, 512), rnd.Next(10, 512));
-                Rigidbody rigidbody = new Rigidbody(randomPosition, 0, new Vector2(20, 20), ShapeType.Rect);
+                Rigidbody rigidbody = new Rigidbody(randomPosition, 0, new Vector2(20, 20), shapeTypes[rnd.Next(0, 2)]);
             }    
         }
 

@@ -1,25 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DynaMotion.DynaMotion
 {
-    public struct TimeStep
-    {
-        public float Dt; // time step
-        public float Inv_Dt; // inverse time step (0 if dt == 0).
-        public float DtRatio;   // dt * inv_dt0
-        public int VelocityIterations;
-        public int PositionIterations;
-    }
-
     public static class PhysicsWorld
     {
         public readonly static List<Rigidbody> RigidbodiesInScene = new List<Rigidbody>();
-        private static float _inv_dt0 = 0.0f;
-        private static bool _lock;
+        private static Vector2 gravity = new Vector2(0, 9.81f);
 
         public static void AddRigidbody(Rigidbody rigidbody)
         {
@@ -71,9 +62,67 @@ namespace DynaMotion.DynaMotion
             }
         }
 
-        public static void Step()
+        public static void Step(float deltaTime)
         {
-            DetectCollisions();
+            // Rigidbody operations
+            for (int i = 0; i < RigidbodiesInScene.Count; i++)
+            {
+                // Movement
+                RigidbodiesInScene[i].Step(deltaTime);
+
+                // Collision Check
+                Rigidbody rb1 = RigidbodiesInScene[i];
+                for (int j = i + 1; j < RigidbodiesInScene.Count; j++)
+                {
+                    Rigidbody rb2 = RigidbodiesInScene[j];
+                    if (Collide(rb1, rb2, out Vector2 normal, out float depth))
+                    {
+                        // Moves both rigidbodies by half the intersection depth
+                        rb1.Move(-normal * depth / 2);
+                        rb2.Move(normal * depth / 2);
+                    }
+                }
+            }            
+        }
+
+        // Checks for collisions between all different shape types.
+        private static bool Collide(Rigidbody rb1, Rigidbody rb2, out Vector2 normal, out float depth)
+        {
+            normal = Vector2.zero;
+            depth = 0;
+
+            if (rb1.shapeType is ShapeType.Rect)
+            {
+                if (rb2.shapeType is ShapeType.Rect)
+                {
+                    return Collisions.PolygonCollision(rb1.GetTransformedVertices(), rb2.GetTransformedVertices(), out normal, out depth);
+                }
+                else if (rb2.shapeType is ShapeType.Circle)
+                {
+                    bool result = Collisions.PolygonCircleCollision(rb2.Position + new Vector2(rb2.Scale.x / 2, rb2.Scale.y / 2), rb2.Scale.x / 2, rb1.GetTransformedVertices(), out normal, out depth);
+
+                    normal = -normal;
+                    return result;
+                }
+            }
+            else if (rb1.shapeType is ShapeType.Circle)
+            {
+                if ( rb2.shapeType is ShapeType.Rect)
+                {
+                    return Collisions.PolygonCircleCollision(rb1.Position + new Vector2(rb1.Scale.x / 2, rb1.Scale.y / 2), rb1.Scale.x / 2, rb2.GetTransformedVertices(), out normal, out depth);
+                }
+                else if (rb2.shapeType is ShapeType.Circle)
+                {
+                    return Collisions.CircleCollision(rb1.Position + new Vector2(rb1.Scale.x / 2, rb1.Scale.y / 2), rb1.Scale.x / 2, rb2.Position + new Vector2(rb2.Scale.x / 2, rb2.Scale.y / 2), rb2.Scale.x / 2, out normal, out depth);
+                }
+            }
+
+            return false;
+        }
+
+        private static void ResolveCollision(Rigidbody rb1, Rigidbody rb2, Vector2 normal, float depth)
+        {
+            //rb1.velocity += j / rb1.mass * normal
         }
     }
 }

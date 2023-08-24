@@ -26,6 +26,7 @@ namespace DynaMotion.DynaMotion
 
                 Vector2 edge = v2 - v1;
                 axis = new Vector2(-edge.y, edge.x);
+                axis = Vector2.Normalize(axis);
 
                 ProjectVertices(vertices, axis, out min1, out max1);
                 ProjectCircle(circleCenter, circleRadius, axis, out min2, out max2);
@@ -48,6 +49,7 @@ namespace DynaMotion.DynaMotion
             Vector2 closestPoint = vertices[closestPointIndex];
 
             axis = closestPoint - circleCenter;
+            axis = Vector2.Normalize(axis);
 
             ProjectVertices(vertices, axis, out min1, out max1);
             ProjectCircle(circleCenter, circleRadius, axis, out min2, out max2);

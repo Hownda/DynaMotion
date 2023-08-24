@@ -30,6 +30,9 @@ namespace DynaMotion.DynaMotion
         public Vector2 CameraPosition = Vector2.zero;
         public float CameraRotation = 0;
 
+        private DateTime time1 = DateTime.Now;
+        private DateTime time2 = DateTime.Now;
+
         public PhysicsEngine(Vector2 ScreenSize, string Title)
         {
             Debug.Log("Physics Engine starting...");
@@ -86,7 +89,8 @@ namespace DynaMotion.DynaMotion
 
         private void Renderer(object sender, PaintEventArgs e)
         {
-            PhysicsWorld.Step();
+            float deltaTime = GetDeltaTime();
+            PhysicsWorld.Step(deltaTime);
 
             Graphics g = e.Graphics;
             g.Clear(BackgroundColor);
@@ -108,7 +112,15 @@ namespace DynaMotion.DynaMotion
                 }
             }
             
-        }       
+        } 
+        
+        private float GetDeltaTime()
+        {
+            time2 = DateTime.Now;
+            float deltaTime = (time2.Ticks - time1.Ticks) / 10000000f;
+            time1 = time2;
+            return deltaTime;
+        }
 
         public abstract void OnLoad();
         public abstract void OnUpdate();
